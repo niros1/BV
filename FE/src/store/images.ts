@@ -6,7 +6,7 @@ import { K_Means } from '@softnami/kmeans';
 const axios = require('axios');
 
 
-export class UserStore {
+export class ImageStore {
     public rootStore!: Stores;
     @observable users: IUser[] = [];
     @observable userImages: IImage[] = [];
@@ -72,20 +72,13 @@ export class UserStore {
                     this.userImages = response.data.map((i: string) => JSON.parse(i));
                     this.userImages = this.userImages.map(i => { i.color = this.getFillColor(); return i; })
 
+                    // Hack. TODO: replace with reactive solution
                     setTimeout(() => {
                         this.generateClusterData();
-
-
                     }, 300);
-
-
                     setTimeout(() => {
                         this.imagesByCluster()
-
-
                     }, 2300);
-
-
                 }
             })
             .catch(function (error: any) {
@@ -109,12 +102,9 @@ export class UserStore {
         this.itemsFilter = v;
     }
 
-
-
     @action setCountryFilter(v: string) {
         this.countryFilter = v;
     }
-
 
     @computed get filteredImages() {
         return this.userImages.filter(img => {
@@ -122,15 +112,17 @@ export class UserStore {
                 (this.sexFilter === "all" ? true : img.sex === this.sexFilter) &&
                 (img.age < this.ageFilter) &&
                 (this.countryFilter === "Any" || img.country === this.countryFilter)
-
             return ret;
-
         }).slice(0, this.itemsFilter);
     }
 
     @computed get countries(): any {
         return [...(new Set<string>(this.userImages.map(i => i.country)))];
     }
+
+    /***
+     * Structure: { subject: 'Emotion', image1: 120, image2: 110.... }
+     */
     @computed get emotionsRadarStruct() {
         const radarDataObj: any = {};
         const radarDataArr: any[] = [];
@@ -151,6 +143,9 @@ export class UserStore {
             radarDataArr.push(Object.assign(radarDataObj[k as any], { emotion: k }));
             return null;
         });
+
+        console.log('DATA', radarDataObj);
+
         return radarDataArr;
     }
 

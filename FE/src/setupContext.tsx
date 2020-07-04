@@ -1,5 +1,5 @@
 import React from 'react';
-import { UserStore } from './store/users';
+import { ImageStore } from './store/images';
 // import { createStore, Stores } from './createStore';
 
 export class RootStore<T> {
@@ -15,13 +15,13 @@ export class RootStore<T> {
   }
 }
 export interface Stores {
-  users: UserStore;
+  users: ImageStore;
 }
 
 
 export const createStore = () => {
   return new RootStore<Stores>({
-    users: new UserStore(),
+    users: new ImageStore(),
   });
 }
 

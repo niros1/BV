@@ -2,7 +2,7 @@ import React from "react"
 import { FormControl, FormLabel, RadioGroup, FormControlLabel, Radio, Slider, Typography, Theme, createStyles, makeStyles, Grid, InputLabel, Select, MenuItem } from "@material-ui/core"
 import { observer } from "mobx-react";
 import { useStore } from "../setupContext";
-import { UserStore } from "../store/users";
+import { ImageStore } from "../store/images";
 
 
 
@@ -26,25 +26,25 @@ const useStyles = makeStyles((theme: Theme) =>
     }),
 );
 
-const BVFilter: React.FunctionComponent<{ userStore: UserStore }> = ({ userStore }) => {
+const BVFilter: React.FunctionComponent<{ ImageStore: ImageStore }> = ({ ImageStore }) => {
     const classes = useStyles();
     const [value, setValue] = React.useState('all');
     const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         setValue((event.target as HTMLInputElement).value);
-        userStore.setSexFilter((event.target as HTMLInputElement).value);
+        ImageStore.setSexFilter((event.target as HTMLInputElement).value);
     };
 
     const ageSliderChangeHandler = (event: any, newValue: number | number[]) => {
-        userStore.setAgeFilter(newValue as number);
+        ImageStore.setAgeFilter(newValue as number);
     };
 
     const itemsSliderChangeHandler = (event: any, newValue: number | number[]) => {
-        userStore.itemsAgeFilter(newValue as number);
+        ImageStore.itemsAgeFilter(newValue as number);
     };
 
 
     const handleCountryChange = (event: React.ChangeEvent<{ value: unknown }>) => {
-        userStore.setCountryFilter(event.target.value as string);
+        ImageStore.setCountryFilter(event.target.value as string);
     };
 
     function valuetext(value: number) {
@@ -52,7 +52,7 @@ const BVFilter: React.FunctionComponent<{ userStore: UserStore }> = ({ userStore
     }
 
     function clearSelectedImage() {
-        userStore.selectedImageId = undefined;
+        ImageStore.selectedImageId = undefined;
     }
 
     return (
@@ -113,12 +113,12 @@ const BVFilter: React.FunctionComponent<{ userStore: UserStore }> = ({ userStore
                     <Select className={classes.formControl}
                         labelId="demo-simple-select-label"
                         id="demo-simple-select"
-                        value={userStore.countryFilter}
+                        value={ImageStore.countryFilter}
                         onChange={handleCountryChange}
                         defaultValue='10'
                     >
                         <MenuItem value={"Any"}>Any</MenuItem>
-                        {userStore.countries.map((c: any, i: number) => {
+                        {ImageStore.countries.map((c: any, i: number) => {
                             return <MenuItem value={c} key={i}>{c}</MenuItem>
                         })}
                     </Select>
@@ -131,7 +131,7 @@ const BVFilter: React.FunctionComponent<{ userStore: UserStore }> = ({ userStore
 const Observed = observer(BVFilter);
 const WithStore: React.FunctionComponent = () => {
     const { users } = useStore();
-    return (<Observed {...{ userStore: users }}></Observed >);
+    return (<Observed {...{ ImageStore: users }}></Observed >);
 }
 
 export default observer(WithStore);

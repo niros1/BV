@@ -1,11 +1,12 @@
 import { observer } from "mobx-react";
 import { useStore } from "../setupContext";
 import React from "react";
-import { UserStore } from "../store/users";
+import { ImageStore } from "../store/images";
 import { ThemeProvider, Grid, Paper, createStyles, makeStyles, Theme, createMuiTheme, Container } from '@material-ui/core';
 import BVFilter from '../components/filter';
 import Galery from '../components/galery'
 import { BVRadar } from "../components/radar";
+import { BVBarChart } from "../components/bars";
 
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
@@ -29,7 +30,7 @@ const useStyles = makeStyles((theme: Theme) =>
     }),
 );
 
-const VImages: React.FunctionComponent<{ userStore: UserStore }> = ({ userStore }) => {
+const VImages: React.FunctionComponent<{ ImageStore: ImageStore }> = ({ ImageStore }) => {
     const classes = useStyles();
     return (
         <Container maxWidth="xl">
@@ -46,8 +47,12 @@ const VImages: React.FunctionComponent<{ userStore: UserStore }> = ({ userStore 
                 </Grid>
                 <Grid item xs={4} className={classes.gridItem} alignItems="center">
                     {
-                        userStore.emotionsRadarStruct[0] &&
-                        <BVRadar {...{ emotionsRadarStruct: userStore.emotionsRadarStruct, userImages: userStore.filteredImages, selectedId: userStore.selectedImageId }}></BVRadar>
+                        ImageStore.emotionsRadarStruct[0] &&
+                        <BVRadar {...{ emotionsRadarStruct: ImageStore.emotionsRadarStruct, userImages: ImageStore.filteredImages, selectedId: ImageStore.selectedImageId }}></BVRadar>
+                    }
+                    {
+                        ImageStore.emotionsRadarStruct[0] &&
+                        <BVBarChart {...{ emotionsRadarStruct: ImageStore.emotionsRadarStruct, userImages: ImageStore.filteredImages, selectedId: ImageStore.selectedImageId }}></BVBarChart>
                     }
                 </Grid>
             </Grid>
@@ -58,7 +63,7 @@ const VImages: React.FunctionComponent<{ userStore: UserStore }> = ({ userStore 
 const Observed = observer(VImages);
 const WithStore: React.FunctionComponent = () => {
     const { users } = useStore();
-    return (<Observed {...{ userStore: users }}></Observed >);
+    return (<Observed {...{ ImageStore: users }}></Observed >);
 }
 
 export default observer(WithStore);

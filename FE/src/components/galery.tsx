@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { observer } from "mobx-react";
 import { useStore } from "../setupContext";
-import { UserStore } from "../store/users";
+import { ImageStore } from "../store/images";
 import { IImage } from "../model/models";
 import { GridList, createStyles, makeStyles, Theme, GridListTile, GridListTileBar, IconButton } from "@material-ui/core";
 import InfoIcon from "@material-ui/icons/Info"
@@ -34,18 +34,18 @@ const useStyles = makeStyles((theme: Theme) =>
     }),
 );
 
-const Galery: React.FunctionComponent<{ userStore: UserStore }> = ({ userStore }) => {
+const Galery: React.FunctionComponent<{ ImageStore: ImageStore }> = ({ ImageStore }) => {
     const classes = useStyles();
     const [overedTile, setOveredTile] = React.useState<number>(-1);
 
     useEffect(() => {
-        userStore.getAllImages();
+        ImageStore.getAllImages();
 
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     const mouseClickHandler = (event: MouseEvent, tile: IImage) => {
-        userStore.selectedImageId = tile.id;
+        ImageStore.selectedImageId = tile.id;
         event.stopPropagation();
     }
 
@@ -56,7 +56,7 @@ const Galery: React.FunctionComponent<{ userStore: UserStore }> = ({ userStore }
         <div className={classes.root}>
             <div>
                 <GridList cellHeight={160} className={classes.gridList} cols={4}>
-                    {userStore.filteredImages.map((tile: IImage, i: number) => (
+                    {ImageStore.filteredImages.map((tile: IImage, i: number) => (
                         <GridListTile key={i} cols={1} className={overedTile === i ? classes.gridListTile : ''}>
                             <img src={`http://127.0.0.1:5000/api/v1/resources/image?user=${tile.path.split('/')[1]}&img=${tile.name}`} alt={tile.name}
                                 onMouseOver={(e: any) => mouseOverTileHandler(e, i)} onClick={(e: any) => mouseClickHandler(e, tile)} />
@@ -75,7 +75,7 @@ const Galery: React.FunctionComponent<{ userStore: UserStore }> = ({ userStore }
 const Observed = observer(Galery);
 const WithStore: React.FunctionComponent = () => {
     const { users } = useStore();
-    return (<Observed {...{ userStore: users }}></Observed >);
+    return (<Observed {...{ ImageStore: users }}></Observed >);
 }
 
 export default observer(WithStore);
