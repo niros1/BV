@@ -93,7 +93,7 @@ const BVFilter: React.FunctionComponent<{ ImageStore: ImageStore }> = ({ ImageSt
                     </Typography>
                             <Slider
                                 onChange={itemsSliderChangeHandler}
-                                defaultValue={50}
+                                defaultValue={10}
                                 getAriaValueText={valuetext}
                                 aria-labelledby="discrete-slider"
                                 valueLabelDisplay="auto"

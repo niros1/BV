@@ -12,7 +12,7 @@ export class ImageStore {
     @observable userImages: IImage[] = [];
     @observable sexFilter: string = 'all';
     @observable ageFilter: number = 100;
-    @observable itemsFilter: number = 100;
+    @observable itemsFilter: number = 10;
 
     @observable clusterData: any;
     @observable imageClusterKeyMap: IImage[] = [];
