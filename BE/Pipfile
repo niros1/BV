@@ -1,0 +1,18 @@
+[[source]]
+name = "pypi"
+url = "https://pypi.org/simple"
+verify_ssl = true
+
+[dev-packages]
+
+[packages]
+requests = "*"
+numpy = "==1.17.4"
+opencv-python = "==3.4.2.16"
+psycopg2-binary = "*"
+flask = "*"
+gevent = "*"
+flask-cors = "*"
+
+[requires]
+python_version = "3.7"
