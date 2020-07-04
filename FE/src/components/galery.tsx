@@ -7,6 +7,7 @@ import { GridList, createStyles, makeStyles, Theme, GridListTile, GridListTileBa
 import InfoIcon from "@material-ui/icons/Info"
 import { BVRadar } from "./radar";
 import BVFilter from './filter';
+import { REST_API } from "../config";
 
 
 const useStyles = makeStyles((theme: Theme) =>
@@ -58,7 +59,7 @@ const Galery: React.FunctionComponent<{ ImageStore: ImageStore }> = ({ ImageStor
                 <GridList cellHeight={160} className={classes.gridList} cols={4}>
                     {ImageStore.filteredImages.map((tile: IImage, i: number) => (
                         <GridListTile key={i} cols={1} className={overedTile === i ? classes.gridListTile : ''}>
-                            <img src={`http://127.0.0.1:5000/api/v1/resources/image?user=${tile.path.split('/')[1]}&img=${tile.name}`} alt={tile.name}
+                            <img src={`${REST_API}/resources/image?user=${tile.path.split('/')[1]}&img=${tile.name}`} alt={tile.name}
                                 onMouseOver={(e: any) => mouseOverTileHandler(e, i)} onClick={(e: any) => mouseClickHandler(e, tile)} />
                             <GridListTileBar
                                 title={tile.name}

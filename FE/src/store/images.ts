@@ -3,6 +3,7 @@ import { observable, computed, action } from "mobx";
 import { Stores } from "../setupContext";
 import { IUser, IImage, EMOTIONS } from "../model/models"
 import { K_Means } from '@softnami/kmeans';
+import { REST_API } from "../config";
 const axios = require('axios');
 
 
@@ -25,7 +26,7 @@ export class ImageStore {
         this.selectedImageId = id;
     }
     @action getUsers() {
-        axios.get('http://127.0.0.1:5000/api/v1/resources/users/all')
+        axios.get(`${REST_API}/resources/users/all`)
             .then((response: any) => {
                 if (response.data && response.data.length > 0) {
                     this.users = response.data.map((i: string) => JSON.parse(i));
@@ -43,7 +44,7 @@ export class ImageStore {
 
     @action getUserImages(userId: string) {
         axios.get(
-            'http://127.0.0.1:5000/api/v1/resources/images',
+            `${REST_API}/resources/images`,
             {
                 params: {
                     id: userId
@@ -66,7 +67,7 @@ export class ImageStore {
 
     @action getAllImages() {
         axios.get(
-            'http://127.0.0.1:5000/api/v1/resources/images/all')
+            `${REST_API}/resources/images/all`)
             .then((response: any) => {
                 if (response.data && response.data.length > 0) {
                     this.userImages = response.data.map((i: string) => JSON.parse(i));
