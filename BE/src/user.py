@@ -26,7 +26,10 @@ class User:
                           sort_keys=True, indent=2)
 
     def save(self):
-        ''' Store user and images in DB, doesn't support update.'''
+        """
+            Store user and images in DB, doesn't support update.
+            TODO: save to db shold not be here, other class should be responsible for that
+        """        
         db.Pcursor().execute("CALL bv.addUser('{0}', '{1}', {2}, '{3}', '{4}')".format(
             self.id, self.name, self.age, self.sex, self.country))
         self.save_images()

@@ -105,6 +105,8 @@ def process_file(img):
     uuid1 = uuid.uuid4()
     emImage = EmotionalImage(
         uuid1, img.name, img.path, features, emotions, "", "", "")
+    
+    # TODO: fix that, currently add one image at a time, not a functional issue but can be imroved.
     user.images.append(emImage)
     user.save()
 

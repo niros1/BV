@@ -25,6 +25,8 @@ class EmotionalImage:
     def toJSON(self):
         return json.dumps(self, default=lambda o: o.__dict__, indent=4)
 
+    
     def save(self, userId):
+        '''TODO: save to db shold not be here, other class should be responsible for that'''
         db.Pcursor().execute("CALL bv.addImage('{0}', '{1}', '{2}', '{3}', '{4}', '{5}')".format(
             self.id, userId,  self.name, self.path, self.features, self.emotions))
