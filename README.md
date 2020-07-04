@@ -30,3 +30,17 @@ make sure the server is runnin fine by accessing http://127.0.0.1:5000/api/v1/re
 
 
 # Getting started with web app
+
+### Change dir to FE
+open another terminal and move the FE directory
+cd FE
+
+### Install dependancy packages
+* the site was developed & checked with node v10.15.3, I newer version should run just fine 
+npm install
+
+### Bring up the web server
+npm run start
+
+the site should be available on http://localhost:3000/
+

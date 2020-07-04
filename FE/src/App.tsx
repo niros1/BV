@@ -137,15 +137,15 @@ function App() {
           </Drawer>
           <Router>
             <Switch>
-              <Route path="/images">
+              <Route path="/">
                 <VImages></VImages>
               </Route>
               <Route path="/cluster">
                 <VCluster></VCluster>
               </Route>
-              <Route path="/">
+              {/* <Route path="/">
                 <Main></Main>
-              </Route>
+              </Route> */}
             </Switch>
           </Router>
 
