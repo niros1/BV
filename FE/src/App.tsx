@@ -1,9 +1,11 @@
 import React, { useEffect } from 'react';
 import './App.css';
-import { ThemeProvider, Grid, Paper, createStyles, makeStyles, Theme, createMuiTheme, Container, AppBar, Toolbar, IconButton, Typography, Drawer } from '@material-ui/core';
+import { ThemeProvider, Grid, Paper, createStyles, makeStyles, Theme, createMuiTheme, Container, AppBar, Toolbar, IconButton, Typography, Drawer, fade } from '@material-ui/core';
 import { WithMobx } from './WithMobx';
 import VImages from './views/images'
 import VCluster from './views/cluster'
+import { Link } from "react-router-dom";
+
 
 import MenuIcon from '@material-ui/icons/Menu'
 import { K_Means } from '@softnami/kmeans';
@@ -34,8 +36,26 @@ const useStyles = makeStyles((theme: Theme) =>
       marginRight: theme.spacing(2),
     },
     title: {
-      flexGrow: 1,
+      // flexGrow: 1,
+      display: "inline-block"
     },
+    links: {
+      flexGrow: 7,
+    },
+    link: {
+      color: "black",
+      marginLeft: 30,
+      // flexGrow: 1,
+      display: "inline-block"
+    },
+    appBar: {
+      backgroundColor: "#B7BFE8",
+      width: "90%",
+      margin: "auto",
+      // border: "1px solid",
+      borderRadius: 15,
+
+    }
   }),
 );
 
@@ -50,23 +70,42 @@ const theme = createMuiTheme({
 });
 
 function App() {
+
+  const preventDefault = (event: React.SyntheticEvent, path: string) => {
+    window.history.replaceState(null, "New Page Title", path)
+    event.preventDefault()
+  };
   const classes = useStyles();
   return (
     <WithMobx>
       <ThemeProvider theme={theme}>
         {/* <Box color="primary" bgcolor="warning.main">blue</Box> */}
         <div className={classes.root} >
-          <AppBar position="static">
-            <Toolbar>
-              <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
-                <MenuIcon />
-              </IconButton>
-              <Typography variant="h6" className={classes.title}>
-                BrainVivo
-              </Typography>
-            </Toolbar>
-          </AppBar>
           <Router>
+            <AppBar position="static" className={classes.appBar}>
+              <Toolbar>
+                <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
+                  <MenuIcon />
+                </IconButton>
+                <Typography variant="h6" className={classes.title}>
+                  BrainVivo
+              </Typography>
+                <img src="/images/bvwhitelogo.webp"></img>
+                <Container maxWidth="sm" className={classes.links}>
+                  <Link to="/" className={classes.link}>
+                    <Typography variant="h6" className={classes.title}>
+                      Emotional Profile
+                    </Typography>
+                  </Link>
+                  <Link to="/cluster/" className={classes.link}>
+                    <Typography variant="h6" className={classes.title}>
+                      Group Clustering
+                    </Typography>
+                  </Link>
+                </Container>
+              </Toolbar>
+            </AppBar>
+
             <Switch>
               <Route path="/cluster">
                 <VCluster></VCluster>

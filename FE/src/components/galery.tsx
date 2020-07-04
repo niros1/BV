@@ -28,7 +28,8 @@ const useStyles = makeStyles((theme: Theme) =>
             color: 'rgba(255, 255, 255, 0.54)',
         },
         gridListTile: {
-            backgroundColor: "black"
+            backgroundColor: "black",
+            borderStyle: "dashed",
         }
     }),
 );
