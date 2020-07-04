@@ -44,28 +44,28 @@ const VCluster: React.FunctionComponent<{ ImageStore: ImageStore }> = ({ ImageSt
         <Container maxWidth="xl">
             <Grid container justify="center" spacing={5} direction="row">
                 <Grid item xs={4} className={classes.gridItem}>
-                    <Grid container justify="space-around" spacing={5} direction="row">
-                        {
-                            ImageStore.clustersImages && ImageStore.clustersImages.map(cluster => {
-                                return cluster.map((img: IImage) => {
-                                })
-
+                    {/* <Grid container justify="space-around" spacing={5} direction="row"> */}
+                    {
+                        ImageStore.clustersImages && ImageStore.clustersImages.map(cluster => {
+                            return cluster.map((img: IImage) => {
                             })
-                        }
 
-                        <GridList cellHeight={160} cols={3}>
-                            {ImageStore.clustersImages[0] && ImageStore.clustersImages[0].map((tile: IImage, i: number) => (
-                                <GridListTile key={i} cols={1}>
-                                    <img src={`http://127.0.0.1:5000/api/v1/resources/image?user=${tile.path.split('/')[1]}&img=${tile.name}`} alt={tile.name} />
-                                    <GridListTileBar
-                                        title={tile.name}
-                                        subtitle={<span>by: {tile.name}</span>}
-                                    />
-                                </GridListTile>
-                            ))}
-                        </GridList>
+                        })
+                    }
 
-                    </Grid>
+                    <GridList cellHeight={160} cols={3}>
+                        {ImageStore.clustersImages[0] && ImageStore.clustersImages[0].map((tile: IImage, i: number) => (
+                            <GridListTile key={i} cols={1}>
+                                <img src={`http://127.0.0.1:5000/api/v1/resources/image?user=${tile.path.split('/')[1]}&img=${tile.name}`} alt={tile.name} />
+                                <GridListTileBar
+                                    title={tile.name}
+                                    subtitle={<span>by: {tile.name}</span>}
+                                />
+                            </GridListTile>
+                        ))}
+                    </GridList>
+
+                    {/* </Grid> */}
                 </Grid>
                 <Grid item xs={4} className={classes.gridItem}>
                     <GridList cellHeight={160} cols={3}>
