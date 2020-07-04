@@ -90,7 +90,7 @@ function App() {
                 <Typography variant="h6" className={classes.title}>
                   BrainVivo
               </Typography>
-                <img src="/images/bvwhitelogo.webp"></img>
+                {/* <img src="/images/bvwhitelogo.webp"></img> */}
                 <Container maxWidth="sm" className={classes.links}>
                   <Link to="/" className={classes.link}>
                     <Typography variant="h6" className={classes.title}>
