@@ -44,7 +44,7 @@ const VImages: React.FunctionComponent<{ userStore: UserStore }> = ({ userStore 
                         </Grid>
                     </Grid>
                 </Grid>
-                <Grid item xs={4} className={classes.gridItem}>
+                <Grid item xs={4} className={classes.gridItem} alignItems="center">
                     {
                         userStore.emotionsRadarStruct[0] &&
                         <BVRadar {...{ emotionsRadarStruct: userStore.emotionsRadarStruct, userImages: userStore.filteredImages, selectedId: userStore.selectedImageId }}></BVRadar>
