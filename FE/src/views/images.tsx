@@ -36,10 +36,10 @@ const VImages: React.FunctionComponent<{ userStore: UserStore }> = ({ userStore 
             <Grid container justify="center" spacing={5} direction="row">
                 <Grid item xs={6} className={classes.gridItem}>
                     <Grid container justify="space-around" spacing={5} direction="row">
-                        <Grid item xs={4} className={classes.gridItem}>
+                        <Grid item xs={10} className={classes.gridItem}>
                             <BVFilter></BVFilter>
                         </Grid>
-                        <Grid item xs={6} className={classes.gridItem}>
+                        <Grid item xs={10} className={classes.gridItem}>
                             <Galery></Galery>
                         </Grid>
                     </Grid>

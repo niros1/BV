@@ -48,7 +48,6 @@ const VCluster: React.FunctionComponent<{ userStore: UserStore }> = ({ userStore
                         {
                             userStore.clustersImages && userStore.clustersImages.map(cluster => {
                                 return cluster.map((img: IImage) => {
-                                    // return <div>{img.name}</div>
                                 })
 
                             })

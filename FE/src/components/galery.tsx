@@ -20,8 +20,8 @@ const useStyles = makeStyles((theme: Theme) =>
             height: '100%'
         },
         gridList: {
-            width: 500,
-            height: 450,
+            width: "100%",
+            height: 500,
 
         },
         icon: {
@@ -46,7 +46,7 @@ const Galery: React.FunctionComponent<{ userStore: UserStore }> = ({ userStore }
     return (
         <div className={classes.root}>
             <div>
-                <GridList cellHeight={160} className={classes.gridList} cols={3}>
+                <GridList cellHeight={160} className={classes.gridList} cols={4}>
                     {userStore.filteredImages.map((tile: IImage, i: number) => (
                         <GridListTile key={i} cols={1}>
                             <img src={`http://127.0.0.1:5000/api/v1/resources/image?user=${tile.path.split('/')[1]}&img=${tile.name}`} alt={tile.name} onClick={(e: any) => mouseClickHandler(e, tile)} />

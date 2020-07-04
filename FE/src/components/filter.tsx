@@ -21,7 +21,7 @@ const useStyles = makeStyles((theme: Theme) =>
         },
         formControl: {
             margin: theme.spacing(1),
-            minWidth: 120,
+            // minWidth: 120,
         },
     }),
 );
@@ -57,57 +57,56 @@ const BVFilter: React.FunctionComponent<{ userStore: UserStore }> = ({ userStore
 
     return (
         <FormControl component="fieldset" className={classes.root} onClick={clearSelectedImage}>
-            {/* <FormLabel component="legend">Gender</FormLabel> */}
-
-            <Grid container className={classes.container} justify="center"
-                alignItems="center" alignContent="center" direction="row" spacing={2}>
-                <Grid item key="sex" md={8}>
+            <Grid container className={classes.container} justify="flex-start"
+                alignItems="flex-start" alignContent="stretch" direction="row" spacing={4}>
+                <Grid item key="sex" md={3}>
                     <RadioGroup aria-label="gender" name="gender1" value={value} onChange={handleChange}>
                         <FormControlLabel value="all" control={<Radio />} label="All" />
                         <FormControlLabel value="f" control={<Radio />} label="Female" />
                         <FormControlLabel value="m" control={<Radio />} label="Male" />
-                        {/* <FormControlLabel value="disabled" disabled control={<Radio />} label="(Disabled option)" /> */}
                     </RadioGroup>
                 </Grid>
-                <Grid item key="age" md={8}>
-                    <div className={classes.root}>
-                        <Typography id="discrete-slider" gutterBottom>
-                            Age
+                <Grid md={6}>
+                    <Grid item key="age" md={10}>
+                        <div className={classes.root}>
+                            <Typography id="discrete-slider" gutterBottom>
+                                Age
                     </Typography>
-                        <Slider
-                            onChange={ageSliderChangeHandler}
-                            defaultValue={50}
-                            getAriaValueText={valuetext}
-                            aria-labelledby="discrete-slider"
-                            valueLabelDisplay="auto"
-                            step={10}
-                            marks
-                            min={10}
-                            max={100}
-                            className={classes.slider}
-                        />
-                    </div>
-                </Grid>
-                <Grid item key="items" md={8}>
-                    <div className={classes.root}>
-                        <Typography id="discrete-slider" gutterBottom>
-                            Num of items
+                            <Slider
+                                onChange={ageSliderChangeHandler}
+                                defaultValue={50}
+                                getAriaValueText={valuetext}
+                                aria-labelledby="discrete-slider"
+                                valueLabelDisplay="auto"
+                                step={10}
+                                marks
+                                min={10}
+                                max={100}
+                                className={classes.slider}
+                            />
+                        </div>
+                    </Grid>
+                    <Grid item key="items" md={10}>
+                        <div className={classes.root}>
+                            <Typography id="discrete-slider" gutterBottom>
+                                Num of items
                     </Typography>
-                        <Slider
-                            onChange={itemsSliderChangeHandler}
-                            defaultValue={50}
-                            getAriaValueText={valuetext}
-                            aria-labelledby="discrete-slider"
-                            valueLabelDisplay="auto"
-                            step={10}
-                            marks
-                            min={10}
-                            max={100}
-                            className={classes.slider}
-                        />
-                    </div>
+                            <Slider
+                                onChange={itemsSliderChangeHandler}
+                                defaultValue={50}
+                                getAriaValueText={valuetext}
+                                aria-labelledby="discrete-slider"
+                                valueLabelDisplay="auto"
+                                step={10}
+                                marks
+                                min={10}
+                                max={100}
+                                className={classes.slider}
+                            />
+                        </div>
+                    </Grid>
                 </Grid>
-                <Grid item key="country" md={8} >
+                <Grid item key="country" md={3} >
                     <Typography id="discrete-slider" gutterBottom>
                         Country
                     </Typography>

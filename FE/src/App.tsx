@@ -2,7 +2,6 @@ import React, { useEffect } from 'react';
 import './App.css';
 import { ThemeProvider, Grid, Paper, createStyles, makeStyles, Theme, createMuiTheme, Container, AppBar, Toolbar, IconButton, Typography, Drawer } from '@material-ui/core';
 import { WithMobx } from './WithMobx';
-import Main from './components/main'
 import VImages from './views/images'
 import VCluster from './views/cluster'
 
@@ -49,73 +48,8 @@ const theme = createMuiTheme({
     },
   }
 });
-type Anchor = 'top' | 'left' | 'bottom' | 'right';
 
 function App() {
-  const [state, setState] = React.useState({
-    top: false,
-    left: false,
-    bottom: false,
-    right: false,
-  });
-
-  useEffect(() => {
-    learn();
-
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
-  const toggleDrawer = (anchor: Anchor, open: boolean) => (
-    event: React.KeyboardEvent | React.MouseEvent,
-  ) => {
-    if (
-      event.type === 'keydown' &&
-      ((event as React.KeyboardEvent).key === 'Tab' ||
-        (event as React.KeyboardEvent).key === 'Shift')
-    ) {
-      return;
-    }
-
-    setState({ ...state, [anchor]: open });
-  };
-
-
-
-
-
-  const learn = () => {
-    //generate data or you can use your own data
-    let data: any[] = [];
-    let generateData = function () {
-      for (let i = 0; i < 10; i++) { // IMages?
-        data[i] = [];
-        for (let j = 0; j < 3; j++) { // emottions
-          data[i].push(Math.random() * 10 + j);
-        }
-      }
-    };
-    generateData();
-
-
-    //instantiate K_Means 
-    const kMeans = new K_Means({
-      random_Init_Count: 4, //number of times to initialize random centroids
-      cluster_count: 2, //number of clusters needed
-      max_iterations: 10000, //maximum iterations to run clustering
-      iteration_callback: () => { console.log("debugInfo"); }, //debug callback
-      notify_count: 10 //execute callback after every 10 iterations
-    });
-
-    console.log('orgdata,', data);
-
-    //start clustering
-    kMeans.start_Clustering(data).then(function (clusters) {
-      console.log(clusters);
-    });
-
-  }
-
-
   const classes = useStyles();
   return (
     <WithMobx>
@@ -132,20 +66,14 @@ function App() {
               </Typography>
             </Toolbar>
           </AppBar>
-          <Drawer anchor="left" open={state["left"]} onClose={toggleDrawer("left", false)}>
-            Left
-          </Drawer>
           <Router>
             <Switch>
-              <Route path="/">
-                <VImages></VImages>
-              </Route>
               <Route path="/cluster">
                 <VCluster></VCluster>
               </Route>
-              {/* <Route path="/">
-                <Main></Main>
-              </Route> */}
+              <Route path="/">
+                <VImages></VImages>
+              </Route>
             </Switch>
           </Router>
 
