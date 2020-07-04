@@ -2,6 +2,9 @@
 
 # Getting started
 
+# Change dir to BE
+cd BE 
+
 # Install pipenv package manager
 pip install --user pipenv
 
