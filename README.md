@@ -21,9 +21,13 @@ pipenv run python src/migration.py
 
 
 ### Populate data - process emotions model
-chmode 775 etl.sh (in case the file created without permissions)
 
-./etl.sh
+```console
+chmode 775 etl.sh
+$ ./etl.sh
+```
+
+
 
 ### Run the BE service
 ./start_server.sh
