@@ -40,8 +40,10 @@ open another terminal and move the FE directory
 cd FE
 
 ### Install dependancy packages
+run: npm install
 * the site was developed & checked with node v10.15.3, newer version should run just fine 
-npm install
+
+
 
 ### Bring up the web server
 npm run start
