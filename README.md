@@ -14,6 +14,8 @@ pipenv install
 ### Run the DB
 docker run -d=true -p 5432:5432 -e POSTGRES_USER=postgres -e POSTGRES_PASSWORD=password -e POSTGRES_DB=postgres postgres:11
 
+You may connect to the DB using pgAdmin (or any other tool) using this connection string: postgresql://postgres:password@0.0.0.0/postgres
+
 ### Create BV DB Schem
 pipenv run python src/migration.py
 
