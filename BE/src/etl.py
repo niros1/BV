@@ -35,6 +35,7 @@ def get_user(filePath):
         [User]: user class
     """
 
+    '''Multi threading shouls be better for IO opearations than multi processing'''
     try:
         with open(filePath) as json_file:
             data = json.load(json_file)
@@ -63,7 +64,6 @@ def extract(directory):
                 img = Image(dirpath, file)
                 images.append(img)
     except:
-        print('WTF')
         logging.exception(
             'Somthing went wrong while "walking" on directory {0}'.format(directory))
 

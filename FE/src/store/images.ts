@@ -195,8 +195,9 @@ export class ImageStore {
 
         //start clustering
         kMeans.start_Clustering(data).then((clusters) => {
-
             this.clusterData = clusters;
+            console.log('CLUSTER DATA', clusters);
+
         });
 
     }
