@@ -8,7 +8,7 @@ verify_ssl = true
 [packages]
 requests = "*"
 numpy = "==1.17.4"
-opencv-python = "==3.4.2.16"
+opencv-python = "==3.4.7.28"
 psycopg2-binary = "*"
 flask = "*"
 gevent = "*"
